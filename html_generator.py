@@ -112,11 +112,14 @@ def create_project(project_name):
     print(f"   └── js/main.js")
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print("❌ You must provide a project name.")
-        print("   Usage: python html_generator.py my-project")
+        print("   Usage: html-kickstart my-project")
         sys.exit(1)
 
     name = sys.argv[1]
     create_project(name)
+
+if __name__ == "__main__":
+    main()
