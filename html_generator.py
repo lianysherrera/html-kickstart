@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 
 def generate_html(project_name):
     return f"""<!DOCTYPE html>
@@ -105,20 +106,27 @@ def create_project(project_name):
     with open(f"{project_name}/js/main.js", "w", encoding="utf-8") as f:
         f.write("// javascript here\n")
 
-    print(f"✅ Project '{project_name}' created!")
+    print(f"✅ Projecto '{project_name}' creado!")
     print(f"📁 {project_name}/")
     print(f"   ├── index.html")
     print(f"   ├── css/styles.css")
     print(f"   └── js/main.js")
 
+def validate_project_name(name: str) -> bool:
+    """ Solo permite letras, números y guiones."""
+    pattern = r'^[a-zA-Z0-9-_]+$'
+    return bool(re.match(pattern, name))
 
 def main():
     if len(sys.argv) < 2:
-        print("❌ You must provide a project name.")
-        print("   Usage: html-kickstart my-project")
+        print("❌ Debes indicar el nombre del proyecto.")
+        print("   Uso: html-kickstart mi-proyecto")
         sys.exit(1)
 
     name = sys.argv[1]
+
+    if not validate_project_name(name):
+        print("Nombre inválido. Solo se permiten letras, números, guiones y guiones bajos.")
     create_project(name)
 
 if __name__ == "__main__":
