@@ -98,10 +98,10 @@ body {
 def create_project(project_name):
 
     if os.path.exists(project_name):
-        print(f"{Fore.YELLOW}La carpeta '{project_name}' ya existe.")
+        print(f"{Fore.YELLOW}⚠️ La carpeta '{project_name}' ya existe.")
         respuesta = input("¿Quieres sobreescribirla? (s/n):")
         if respuesta.lower() != "s":
-            print(f"{Fore.RED} Operación cancelada.")
+            print(f"{Fore.RED}🚫 Operación cancelada.")
             sys.exit(1)
 
     os.makedirs(f"{project_name}/css", exist_ok=True)
@@ -116,7 +116,7 @@ def create_project(project_name):
     with open(f"{project_name}/js/main.js", "w", encoding="utf-8") as f:
         f.write("// javascript here\n")
 
-    print(f"{Fore.GREEN} Projecto '{project_name}' creado correctamente")
+    print(f"{Fore.GREEN}✅ Projecto '{project_name}' creado correctamente")
     print(f"{Fore.CYAN}📁 {project_name}/")
     print(f"   ├── index.html")
     print(f"   ├── css/styles.css")
@@ -129,14 +129,14 @@ def validate_project_name(name: str) -> bool:
 
 def main():
     if len(sys.argv) < 2:
-        print(f"{Fore.RED} Debes indicar el nombre del proyecto.")
-        print("   Uso: html-kickstart mi-proyecto{Style.RESET_ALL}")
+        print(f"{Fore.RED}❌ Debes indicar el nombre del proyecto.")
+        print(" 📝 Uso: html-kickstart mi-proyecto{Style.RESET_ALL}")
         sys.exit(1)
 
     name = sys.argv[1]
 
     if not validate_project_name(name):
-        print(f"{Fore.RED}Nombre inválido. Solo se permiten letras, números, guiones y guiones bajos.")
+        print(f"{Fore.RED}❌ Nombre inválido. Solo se permiten letras, números, guiones y guiones bajos.")
     create_project(name)
 
 if __name__ == "__main__":
