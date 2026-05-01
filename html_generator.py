@@ -94,6 +94,13 @@ body {
 
 def create_project(project_name):
 
+    if os.path.exists(project_name):
+        print(f"La carpeta '{project_name}' ya existe.")
+        respuesta = input("¿Quieres sobreescribirla? (s/n):")
+        if respuesta.lower() != "s":
+            print(" Operación cancelada.")
+            sys.exit(1)
+
     os.makedirs(f"{project_name}/css", exist_ok=True)
     os.makedirs(f"{project_name}/js", exist_ok=True)
 
@@ -106,7 +113,7 @@ def create_project(project_name):
     with open(f"{project_name}/js/main.js", "w", encoding="utf-8") as f:
         f.write("// javascript here\n")
 
-    print(f"✅ Projecto '{project_name}' creado!")
+    print(f"Projecto '{project_name}' creado!")
     print(f"📁 {project_name}/")
     print(f"   ├── index.html")
     print(f"   ├── css/styles.css")
@@ -119,7 +126,7 @@ def validate_project_name(name: str) -> bool:
 
 def main():
     if len(sys.argv) < 2:
-        print("❌ Debes indicar el nombre del proyecto.")
+        print("Debes indicar el nombre del proyecto.")
         print("   Uso: html-kickstart mi-proyecto")
         sys.exit(1)
 
