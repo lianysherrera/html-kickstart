@@ -95,6 +95,145 @@ body {
 }
 """
 
+def generate_css_dark():
+    return """/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a1a2e;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #16213e;
+    border-bottom: 1px solid #0f3460;
+    padding: 1.2rem 2rem;
+}
+
+/* Nav */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e94560;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav ul li a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav ul li a:hover {
+    color: #e94560;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 3rem 2rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #16213e;
+    border-top: 1px solid #0f3460;
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+"""
+
+def generate_css_colorful():
+    return """/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff9f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    padding: 1.2rem 2rem;
+}
+
+/* Nav */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav ul li a:hover {
+    color: #fff9f0;
+    text-decoration: underline;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 3rem 2rem;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 0.8rem;
+    color: white;
+}
+"""
+
 def create_project(project_name):
 
     if os.path.exists(project_name):
