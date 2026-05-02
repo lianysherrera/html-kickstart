@@ -4,11 +4,37 @@ import re
 from colorama import Fore, Style, init
 import questionary
 
+IDIOMAS = {
+    "español": {
+        "lang": "es",
+        "nav": ["Inicio", "Sobre mí", "Contacto"],
+        "bienvenida": "Bienvenido a",
+        "footer": "Todos los derechos reservados."
+    },
+    "english": {
+        "lang": "en",
+        "nav": ["Home", "About", "Contact"],
+        "bienvenida": "Welcome to",
+        "footer": "All rights reserved."
+    },
+    "français": {
+        "lang": "fr",
+        "nav": ["Accueil", "À propos", "Contact"],
+        "bienvenida": "Bienvenue à",
+        "footer": "Tous droits réservés."
+    }
+}
+
 init(autoreset=True)
 
-def generate_html(project_name):
+def generate_html(project_name, idioma="español"):
+    lang = IDIOMAS[idioma]["lang"]
+    nav = IDIOMAS[idioma]["nav"]
+    bienvenida = IDIOMAS[idioma]["bienvenida"]
+    footer = IDIOMAS[idioma]["footer"]
+
     return f"""<!DOCTYPE html>
-<html lang="es">
+<html lang="{lang}">
 <head>
     <meta charset="UTF-8">
     <title>{project_name}</title>
@@ -20,19 +46,19 @@ def generate_html(project_name):
         <nav class="nav">
             <h1>{project_name}</h1>
             <ul>
-                <li><a href="#">{project_name}</a></li>
-                <li><a href="#">{project_name}</a></li>
-                <li><a href="#">{project_name}</a></li>
+                <li><a href="#">{nav[0]}</a></li>
+                <li><a href="#">{nav[1]}</a></li>
+                <li><a href="#">{nav[2]}</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="main">
-        <p>Bienvenido a {project_name}</p>
+        <p>{bienvenida} {project_name}</p>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 {project_name}</p>
+        <p>&copy; 2025 {project_name}. {footer}</p>
     </footer>
 
     <script src="js/main.js"></script>
@@ -213,7 +239,7 @@ body {
 }
 """
 
-def create_project(project_name, tema="minimalista", readme=False):
+def create_project(project_name, tema="minimalista", readme=False, idioma="español"):
 
     if os.path.exists(project_name):
         print(f"{Fore.YELLOW}⚠️ La carpeta '{project_name}' ya existe.")
@@ -226,7 +252,7 @@ def create_project(project_name, tema="minimalista", readme=False):
     os.makedirs(f"{project_name}/js", exist_ok=True)
 
     with open(f"{project_name}/index.html", "w", encoding="utf-8") as f:
-        f.write(generate_html(project_name))
+        f.write(generate_html(project_name, idioma))
     
     if tema == "oscuro":
         css = generate_css_dark()
@@ -272,9 +298,14 @@ def main():
         choices=["minimalista", "oscuro", "colorido"]
     ).ask()
 
+    idioma = questionary.select(
+        "🌍 Elige un idioma:",
+        choices=["español", "english", "français"]
+    ).ask()
+
     readme = questionary.confirm("📄 ¿Añadir un README.md al proyecto?").ask()
 
-    create_project(name, tema, readme)
+    create_project(name, tema, readme, idioma)
 
 if __name__ == "__main__":
     main()
