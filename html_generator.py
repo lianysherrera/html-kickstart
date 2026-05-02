@@ -235,7 +235,7 @@ body {
 }
 """
 
-def create_project(project_name, tema="minimalista"):
+def create_project(project_name, tema="minimalista", readme=False):
 
     if os.path.exists(project_name):
         print(f"{Fore.YELLOW}⚠️ La carpeta '{project_name}' ya existe.")
@@ -269,6 +269,11 @@ def create_project(project_name, tema="minimalista"):
     print(f"   ├── css/styles.css")
     print(f"   └── js/main.js {Style.RESET_ALL}")
 
+    if readme:
+        with open(f"{project_name}/README.md", "w", encoding="utf-8") as f:
+            f.write(f"# {project_name}\n\nDescripción de tu proyecto aquí.\n")
+        print(f"{Fore.GREEN}   └── 📝 README.md{Style.RESET_ALL}")
+
 def validate_project_name(name: str) -> bool:
     """ Solo permite letras, números y guiones."""
     pattern = r'^[a-zA-Z0-9-_]+$'
@@ -289,7 +294,9 @@ def main():
         choices=["minimalista", "oscuro", "colorido"]
     ).ask()
 
-    create_project(name, tema)
+    readme = questionary.confirm("📄 ¿Añadir un README.md al proyecto?").ask()
+
+    create_project(name, tema, readme)
 
 if __name__ == "__main__":
     main()
