@@ -10,20 +10,6 @@ Genera una plantilla HTML con header, main y footer lista para usar, desde cualq
 - Validación del nombre del proyecto
 - Colores en la terminal
 
-## Instalación
-
-```bash
-git clone https://github.com/tu-usuario/html-kickstart.git
-cd html-kickstart
-pip install -e .
-```
-
-## Uso
-
-```bash
-html-kickstart mi-proyecto
-```
-
 ## Estructura generada
 
 ```
