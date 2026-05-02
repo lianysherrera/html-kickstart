@@ -2,6 +2,7 @@ import os
 import sys
 import re
 from colorama import Fore, Style, init
+import questionary
 
 init(autoreset=True)
 
@@ -234,7 +235,7 @@ body {
 }
 """
 
-def create_project(project_name):
+def create_project(project_name, tema="minimalista"):
 
     if os.path.exists(project_name):
         print(f"{Fore.YELLOW}⚠️ La carpeta '{project_name}' ya existe.")
@@ -248,6 +249,13 @@ def create_project(project_name):
 
     with open(f"{project_name}/index.html", "w", encoding="utf-8") as f:
         f.write(generate_html(project_name))
+    
+    if tema == "oscuro":
+        css = generate_css_dark()
+    elif tema == "colorido":
+        css = generate_css_colorful()
+    else:
+        css = generate_css()
 
     with open(f"{project_name}/css/styles.css", "w", encoding="utf-8") as f:
         f.write(generate_css())
@@ -267,16 +275,21 @@ def validate_project_name(name: str) -> bool:
     return bool(re.match(pattern, name))
 
 def main():
-    if len(sys.argv) < 2:
-        print(f"{Fore.RED}❌ Debes indicar el nombre del proyecto.")
-        print(" 📝 Uso: html-kickstart mi-proyecto{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}🚀 Bienvenido a html-kickstart!{Style.RESET_ALL}")
+    print()
+
+    name = questionary.text("📝 Nombre del proyecto:").ask()
+
+    if not name or not validate_project_name(name):
+        print(f"{Fore.RED}❌ Nombre inválido. Solo se permiten letras, números, guiones y guiones bajos.{Style.RESET_ALL}")
         sys.exit(1)
 
-    name = sys.argv[1]
+    tema = questionary.select(
+        "🎨 Elige un tema:",
+        choices=["minimalista", "oscuro", "colorido"]
+    ).ask()
 
-    if not validate_project_name(name):
-        print(f"{Fore.RED}❌ Nombre inválido. Solo se permiten letras, números, guiones y guiones bajos.")
-    create_project(name)
+    create_project(name, tema)
 
 if __name__ == "__main__":
     main()
