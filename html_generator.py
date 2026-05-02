@@ -97,141 +97,119 @@ body {
 """
 
 def generate_css_dark():
-    return """/* Reset */
+    return """
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #1a1a2e;
-    color: #eee;
+    background-color: #0d0d0d;
+    color: #f0f0f0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-
-/* Header */
 .header {
-    background-color: #16213e;
-    border-bottom: 1px solid #0f3460;
+    background-color: #111111;
+    border-bottom: 1px solid #222;
     padding: 1.2rem 2rem;
 }
-
-/* Nav */
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .nav h1 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #e94560;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
-
 .nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
 }
-
 .nav ul li a {
-    color: #aaa;
+    color: #888;
     text-decoration: none;
     font-size: 0.9rem;
+    transition: color 0.3s;
 }
-
 .nav ul li a:hover {
-    color: #e94560;
+    color: #ffffff;
 }
-
-/* Main */
 .main {
     flex: 1;
     padding: 3rem 2rem;
 }
-
-/* Footer */
 .footer {
-    background-color: #16213e;
-    border-top: 1px solid #0f3460;
+    background-color: #111111;
+    border-top: 1px solid #222;
     text-align: center;
     padding: 1.2rem;
     font-size: 0.8rem;
-    color: #aaa;
+    color: #555;
 }
 """
 
 def generate_css_colorful():
-    return """/* Reset */
+    return """
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #fff9f0;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-
-/* Header */
 .header {
-    background: linear-gradient(135deg, #f093fb, #f5576c);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     padding: 1.2rem 2rem;
 }
-
-/* Nav */
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .nav h1 {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: white;
+    letter-spacing: 1px;
 }
-
 .nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
 }
-
 .nav ul li a {
-    color: white;
+    color: rgba(255,255,255,0.8);
     text-decoration: none;
     font-size: 0.9rem;
+    transition: color 0.3s;
 }
-
 .nav ul li a:hover {
-    color: #fff9f0;
-    text-decoration: underline;
+    color: white;
 }
-
-/* Main */
 .main {
     flex: 1;
     padding: 3rem 2rem;
 }
-
-/* Footer */
 .footer {
-    background: linear-gradient(135deg, #f093fb, #f5576c);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     text-align: center;
     padding: 1.2rem;
     font-size: 0.8rem;
-    color: white;
+    color: rgba(255,255,255,0.8);
 }
 """
 
@@ -258,7 +236,7 @@ def create_project(project_name, tema="minimalista", readme=False):
         css = generate_css()
 
     with open(f"{project_name}/css/styles.css", "w", encoding="utf-8") as f:
-        f.write(generate_css())
+        f.write(css)
 
     with open(f"{project_name}/js/main.js", "w", encoding="utf-8") as f:
         f.write("// javascript here\n")
