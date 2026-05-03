@@ -27,9 +27,9 @@ IDIOMAS = {
 
 init(autoreset=True)
 
-def generate_html(project_name, idioma="español"):
+def generate_html(project_name, idioma="español", nav_custom=None):
     lang = IDIOMAS[idioma]["lang"]
-    nav = IDIOMAS[idioma]["nav"]
+    nav = nav_custom if nav_custom else IDIOMAS[idioma]["nav"]
     bienvenida = IDIOMAS[idioma]["bienvenida"]
     footer = IDIOMAS[idioma]["footer"]
 
@@ -37,7 +37,10 @@ def generate_html(project_name, idioma="español"):
 <html lang="{lang}">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{project_name}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="favicon.ico">
 </head>
@@ -45,8 +48,8 @@ def generate_html(project_name, idioma="español"):
 
     <header class="header">
         <nav class="nav">
-            <h1>{project_name}</h1>
-            <ul>
+            <a href="#" class="nav__logo">{project_name}</a>
+            <ul class="nav__links">
                 <li><a href="#">{nav[0]}</a></li>
                 <li><a href="#">{nav[1]}</a></li>
                 <li><a href="#">{nav[2]}</a></li>
@@ -55,71 +58,125 @@ def generate_html(project_name, idioma="español"):
     </header>
 
     <main class="main">
-        <p>{bienvenida} {project_name}</p>
+        <div class="hero">
+            <span class="hero__tag">{bienvenida}</span>
+            <h1 class="hero__title">{project_name}</h1>
+            <p class="hero__subtitle">Empieza a construir algo increíble aquí.</p>
+        </div>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 {project_name}. {footer}</p>
     </footer>
 
-    <script src="js/main.js"></script>
 </body>
 </html>"""
 
 def generate_css():
     return """
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --color-bg: #fafaf8;
+    --color-text: #1a1a1a;
+    --color-muted: #888;
+    --color-border: #e8e8e4;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+}
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff;
-    color: #333;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-weight: 300;
 }
 .header {
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #eee;
-    padding: 1.2rem 2rem;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
 }
-.nav h1 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #111;
+.nav__logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    text-decoration: none;
 }
-.nav ul {
+.nav__links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
-.nav ul li a {
-    color: #666;
+.nav__links li a {
+    color: var(--color-muted);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
 }
-.nav ul li a:hover {
-    color: #111;
+.nav__links li a:hover {
+    color: var(--color-text);
 }
 .main {
     flex: 1;
-    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem;
+}
+.hero {
+    text-align: center;
+    max-width: 600px;
+}
+.hero__tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+}
+.hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-text);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+.hero__subtitle {
+    font-size: 1rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    font-weight: 300;
 }
 .footer {
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--color-border);
+    padding: 1.5rem 3rem;
     text-align: center;
-    padding: 1.2rem;
     font-size: 0.8rem;
-    color: #aaa;
+    color: var(--color-muted);
+    letter-spacing: 0.03em;
 }
 """
 
