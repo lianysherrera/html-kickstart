@@ -39,6 +39,7 @@ def generate_html(project_name, idioma="español"):
     <meta charset="UTF-8">
     <title>{project_name}</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 <body>
 
@@ -239,7 +240,7 @@ body {
 }
 """
 
-def create_project(project_name, tema="minimalista", readme=False, idioma="español"):
+def create_project(project_name, tema="minimalista", readme=False, idioma="español",gitignore=False, favicon=False):
 
     if os.path.exists(project_name):
         print(f"{Fore.YELLOW}⚠️ La carpeta '{project_name}' ya existe.")
@@ -278,6 +279,20 @@ def create_project(project_name, tema="minimalista", readme=False, idioma="espa�
             f.write(f"# {project_name}\n\nDescripción de tu proyecto aquí.\n")
         print(f"{Fore.GREEN}   └── 📝 README.md{Style.RESET_ALL}")
 
+    if gitignore:
+        with open(f"{project_name}/.gitignore", "w", encoding="utf-8") as f:
+            f.write("node_modules/\n.venv/\n.env\n*.pyc\n.DS_Store\nThumbs.db\n")
+        print(f"{Fore.GREEN}   └── 🙈 .gitignore{Style.RESET_ALL}")
+
+    if favicon:
+        import shutil
+        favicon_origen = os.path.join(os.path.dirname(__file__), "favicon.ico")
+        if os.path.exists(favicon_origen):
+            shutil.copy(favicon_origen, f"{project_name}/favicon.ico")
+            print(f"{Fore.GREEN}   └── 🖼️ favicon.ico{Style.RESET_ALL}")
+        else:
+            print(f"{Fore.YELLOW}⚠️ No se encontró favicon.ico en el repo.{Style.RESET_ALL}")
+
 def validate_project_name(name: str) -> bool:
     """ Solo permite letras, números y guiones."""
     pattern = r'^[a-zA-Z0-9-_]+$'
@@ -304,8 +319,10 @@ def main():
     ).ask()
 
     readme = questionary.confirm("📄 ¿Añadir un README.md al proyecto?").ask()
+    gitignore = questionary.confirm("🙈 Añadir un .gitignore?").ask()
+    favicon = questionary.confirm("🖼️ Añadir un favicon?").ask()
 
-    create_project(name, tema, readme, idioma)
+    create_project(name, tema, readme, idioma, gitignore, favicon)
 
 if __name__ == "__main__":
     main()
