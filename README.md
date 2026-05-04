@@ -1,16 +1,49 @@
-# html-kickstart
+# 🚀 html-kickstart
 
-Genera una plantilla HTML con header, main y footer lista para usar, desde cualquier terminal.
+Genera una plantilla HTML lista para usar desde cualquier terminal. HTML + CSS + JS en un solo comando.
 
-## Características
+![version](https://img.shields.io/badge/version-1.0.0-purple)
+![python](https://img.shields.io/badge/python-3.8+-blue)
+![license](https://img.shields.io/badge/license-MIT-green)
 
-- Genera estructura de carpetas y archivos automáticamente
-- HTML con header, nav, main y footer
-- CSS minimalista listo para personalizar
+## ✨ Características
+
+- 3 temas: minimalista, oscuro y colorido
+- 3 idiomas: español, english y français
+- Menú hamburguesa responsive incluido
 - Validación del nombre del proyecto
+- Comprueba si la carpeta ya existe
 - Colores en la terminal
+- Opciones extra: README, .gitignore y favicon
 
-## Estructura generada
+## 📦 Instalación
+
+```bash
+git clone https://github.com/tu-usuario/html-kickstart.git
+cd html-kickstart
+pip install -e .
+```
+
+## 🖥️ Uso
+
+```bash
+html-kickstart
+```
+
+El menú interactivo te guiará paso a paso:
+
+```
+🚀 Bienvenido a html-kickstart!
+
+📝 Nombre del proyecto: mi-proyecto
+🎨 Elige un tema: minimalista / oscuro / colorido
+🌍 Elige un idioma: español / english / français
+📄 ¿Añadir un README.md?
+🙈 ¿Añadir un .gitignore?
+🖼️ ¿Añadir un favicon?
+```
+
+## 📁 Estructura generada
 
 ```
 mi-proyecto/
@@ -20,3 +53,13 @@ mi-proyecto/
 └── js/
     └── main.js
 ```
+
+## ⚙️ Opciones
+
+```bash
+html-kickstart --version  # Ver versión instalada
+```
+
+## 📄 Licencia
+
+MIT
