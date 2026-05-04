@@ -49,7 +49,15 @@ def generate_html(project_name, idioma="español", nav_custom=None):
     <header class="header">
         <nav class="nav">
             <a href="#" class="nav__logo">{project_name}</a>
-            <ul class="nav__links">
+
+            <!-- Botón hamburguesa -->
+            <button class="nav__burger" id="burger" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav__links" id="nav-links">
                 <li><a href="#">{nav[0]}</a></li>
                 <li><a href="#">{nav[1]}</a></li>
                 <li><a href="#">{nav[2]}</a></li>
@@ -69,6 +77,7 @@ def generate_html(project_name, idioma="español", nav_custom=None):
         <p>&copy; 2025 {project_name}. {footer}</p>
     </footer>
 
+    <script src="js/main.js"></script>
 </body>
 </html>"""
 
@@ -110,6 +119,7 @@ body {
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
 }
 .nav__logo {
     font-family: var(--font-display);
@@ -178,6 +188,71 @@ body {
     color: var(--color-muted);
     letter-spacing: 0.03em;
 }
+
+/* Hamburger button */
+.nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+.nav__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.nav__burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav__burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.2rem 1.5rem;
+    }
+    .nav__burger {
+        display: flex;
+    }
+    .nav__links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: calc(100% + 1.2rem);
+        left: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: 0.5rem 0;
+    }
+    .nav__links.open {
+        display: flex;
+    }
+    .nav__links li a {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .main {
+        padding: 4rem 1.5rem;
+    }
+    .footer {
+        padding: 1.2rem 1.5rem;
+    }
+}
 """
 
 def generate_css_dark():
@@ -219,6 +294,7 @@ body {
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
 }
 .nav__logo {
     font-family: var(--font-display);
@@ -287,6 +363,70 @@ body {
     color: var(--color-muted);
     letter-spacing: 0.03em;
 }
+/* Hamburger button */
+.nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+.nav__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.nav__burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav__burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.2rem 1.5rem;
+    }
+    .nav__burger {
+        display: flex;
+    }
+    .nav__links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: calc(100% + 1.2rem);
+        left: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: 0.5rem 0;
+    }
+    .nav__links.open {
+        display: flex;
+    }
+    .nav__links li a {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .main {
+        padding: 4rem 1.5rem;
+    }
+    .footer {
+        padding: 1.2rem 1.5rem;
+    }
+}
 """
 
 def generate_css_colorful():
@@ -328,6 +468,7 @@ body {
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
 }
 .nav__logo {
     font-family: var(--font-display);
@@ -396,6 +537,70 @@ body {
     color: rgba(255,255,255,0.8);
     letter-spacing: 0.03em;
 }
+/* Hamburger button */
+.nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+.nav__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.nav__burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav__burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.2rem 1.5rem;
+    }
+    .nav__burger {
+        display: flex;
+    }
+    .nav__links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: calc(100% + 1.2rem);
+        left: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: 0.5rem 0;
+    }
+    .nav__links.open {
+        display: flex;
+    }
+    .nav__links li a {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .main {
+        padding: 4rem 1.5rem;
+    }
+    .footer {
+        padding: 1.2rem 1.5rem;
+    }
+}
 """
 
 def create_project(project_name, tema="minimalista", readme=False, idioma="español",gitignore=False, favicon=False):
@@ -424,7 +629,22 @@ def create_project(project_name, tema="minimalista", readme=False, idioma="espa�
         f.write(css)
 
     with open(f"{project_name}/js/main.js", "w", encoding="utf-8") as f:
-        f.write("// javascript here\n")
+        f.write("""// Menú hamburguesa
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('nav-links');
+
+burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+    });
+});
+""")
 
     print(f"{Fore.GREEN}✅ Projecto '{project_name}' creado correctamente")
     print(f"{Fore.CYAN}📁 {project_name}/")
