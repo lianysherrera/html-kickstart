@@ -18,11 +18,31 @@ Genera una plantilla HTML lista para usar desde cualquier terminal. HTML + CSS +
 
 ## 📦 Instalación
 
+### Windows
+
 ```bash
-git clone https://github.com/lianysherrera/html-kickstart.git
+git clone https://github.com/tu-usuario/html-kickstart.git
 cd html-kickstart
 pip install -e .
 ```
+
+### Ubuntu / Linux
+
+En Ubuntu es necesario usar un entorno virtual:
+
+```bash
+git clone https://github.com/lianysherrera/html-kickstart.git
+cd html-kickstart
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .
+pip install -r requirements.txt
+```
+
+> ⚠️ Cada vez que abras una terminal nueva en Ubuntu, activa el entorno virtual primero:
+> ```bash
+> source ~/ruta/a/html-kickstart/venv/bin/activate
+> ```
 
 ## 🖥️ Uso
 
