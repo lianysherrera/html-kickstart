@@ -19,7 +19,7 @@ Genera una plantilla HTML lista para usar desde cualquier terminal. HTML + CSS +
 ## 📦 Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/html-kickstart.git
+git clone https://github.com/lianysherrera/html-kickstart.git
 cd html-kickstart
 pip install -e .
 ```
