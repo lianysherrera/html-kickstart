@@ -581,7 +581,7 @@ body {
         top: calc(100% + 1.2rem);
         left: -1.5rem;
         right: -1.5rem;
-        background-color: var(--color-bg);
+        background-color: white;  /* ← aquí */
         border-top: 1px solid var(--color-border);
         border-bottom: 1px solid var(--color-border);
         padding: 0.5rem 0;
@@ -593,6 +593,11 @@ body {
         display: block;
         padding: 0.9rem 1.5rem;
         font-size: 0.9rem;
+        color: var(--color-text);
+    }
+    .nav__links li a:hover {
+        color: var(--color-accent-1);
+        background-color: var(--color-border);
     }
     .main {
         padding: 4rem 1.5rem;
